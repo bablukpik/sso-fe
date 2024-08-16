@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sso-fe
+spec:
+  replicas: 1 # Number of replicas (pods)
+  selector:
+    matchLabels:
+      app: sso-fe
+  template:
+    metadata:
+      labels:
+        app: sso-fe
+    spec:
+      containers:
+        - name: sso-fe
+          image: bablukpik/sso-fe:latest
+          ports:
+            - containerPort: 3000

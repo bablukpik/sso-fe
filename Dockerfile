@@ -1,5 +1,6 @@
-FROM node:18.18.0 AS build
+FROM node:18.18.0
 
+# Set the working directory inside the container
 WORKDIR /usr/src/app
 
 COPY package*.json ./
@@ -8,14 +9,10 @@ RUN npm install
 
 COPY . .
 
-# React app for production
 RUN npm run build
 
-# Use nginx to serve the static files
-FROM nginx:alpine
+# Expose the port the app runs on
+EXPOSE 3000
 
-# Copy the build files from the previous stage
-COPY --from=build /usr/src/app/build /usr/share/nginx/html
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Define the command to run the app
+CMD [ "npm", "start" ]
