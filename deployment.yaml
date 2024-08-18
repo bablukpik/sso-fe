@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: sso-fe
-          image: bablukpik/sso-fe:latest
+          image: bablukpik/sso-fe:v1.0.1
           ports:
             - containerPort: 3000
