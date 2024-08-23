@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sso-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: test-domain.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sso-fe-service
+                port:
+                  number: 5000
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: sso-be-service
+                port:
+                  number: 8000
+  # Uncomment this section if you have a TLS certificate for HTTPS
+  # tls:
+  # - hosts:
+  #   - myapp.local
+  #   secretName: tls-secret
