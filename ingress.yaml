@@ -24,5 +24,5 @@ spec:
   # Uncomment this section if you have a TLS certificate for HTTPS
   # tls:
   # - hosts:
-  #   - myapp.local
+  #   - test-domain.com
   #   secretName: tls-secret
